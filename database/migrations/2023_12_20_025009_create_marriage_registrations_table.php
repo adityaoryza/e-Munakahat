@@ -12,7 +12,7 @@ public function up(): void
 {
 Schema::create('marriage_registrations', function (Blueprint $table) {
 $table->id('RegistrationID');
-$table->foreignId('UserID')->constrained('users', 'UserID')->onDelete('cascade');
+$table->foreignId('id')->constrained('users', 'id')->onDelete('cascade');
 $table->string('RegistrationType', 100)->default('Permitted');
 $table->string('RegistrationStatus', 100)->default('Pending');
 $table->date('RegistrationDate');
