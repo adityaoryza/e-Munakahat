@@ -20,7 +20,7 @@ class MarriageRegistrationController extends Controller
      */
     public function create()
     {
-        //
+        return view('marriageRegistrations.create');
     }
 
     /**
@@ -28,7 +28,20 @@ class MarriageRegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the form data
+        $validatedData = $request->validate([
+            // Define validation rules based on your form fields
+            'husband_first_name' => 'required|string|max:255',
+            'wife_first_name' => 'required|string|max:255',
+            'marriage_date' => 'required|date',
+            // Add more fields as needed
+        ]);
+
+        // Create a new marriage registration record
+        $marriageRegistration = MarriageRegistration::create($validatedData);
+
+        // Redirect the user to a confirmation page or dashboard
+        return redirect()->route('dashboard')->with('success', 'Marriage registration submitted successfully.');
     }
 
     /**
@@ -36,7 +49,7 @@ class MarriageRegistrationController extends Controller
      */
     public function show(MarriageRegistration $marriageRegistration)
     {
-        //
+        return view('marriage-registration.show', ['marriageRegistration' => $marriageRegistration]);
     }
 
     /**
