@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MarriageRegistrationController;
+use App\Http\Controllers\IncentiveApplicationController;
+use App\Http\Controllers\ConsultationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +35,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/marriage-registration', [MarriageRegistrationController::class, 'show'])->name('marriage-registration.show');
     Route::post('/marriage-registration', [MarriageRegistrationController::class, 'store'])->name('marriage-registration.store');
     Route::resource('marriageRegistrations', MarriageRegistrationController::class);
+
+    // // New route for incentive application ===> example
+    // Route::get('/incentive', function () {
+    //     return view('incentiveApplication/index');
+    // });
+    
+    Route::get('/incentiveApplication/index', [IncentiveApplicationController::class, 'applyIncentive']);
+
+    
+    
+    Route::get('/Consultation/index', [ConsultationController::class, 'index']);
+    
 });
 
 require __DIR__.'/auth.php';

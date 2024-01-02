@@ -23,13 +23,7 @@
                         {{ __('Registrations') }}
                     </x-nav-link>
                 </div>
-                <!-- Incentive Application -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('incentiveApplication.applyIncentive')"
-                        :active="request()->routeIs('incentiveApplication.*')">
-                        {{ __('Incentive') }}
-                    </x-nav-link>
-                </div>
+             
             </div>
 
             <!-- Settings Dropdown -->

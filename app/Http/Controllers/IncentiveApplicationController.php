@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 class IncentiveApplicationController extends Controller
 {
     /**
+     * Apply the incentive.
+     */
+    public function applyIncentive()
+    {
+        return view('incentiveApplication.index');
+    }
+    /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
+        return view('incentiveApplication.index');
     }
 
     /**
@@ -21,6 +29,7 @@ class IncentiveApplicationController extends Controller
     public function create()
     {
         //
+        return view('incentiveApplication.applyIncentive');
     }
 
     /**
