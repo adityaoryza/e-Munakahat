@@ -9,12 +9,12 @@ class IncentiveApplicationController extends Controller
 {
     /**
      * Apply the incentive.
-     */
-    public function applyIncentive()
-    {
-        return view('incentiveApplication.index');
-    }
-    /**
+     
+    *public function applyIncentive()
+    *{
+    *    return view('incentiveApplication.index');
+    *}
+    *
      * Display a listing of the resource.
      */
     public function index()
@@ -29,7 +29,7 @@ class IncentiveApplicationController extends Controller
     public function create()
     {
         //
-        return view('incentiveApplication.applyIncentive');
+        return view('incentiveApplication.create');
     }
 
     /**

@@ -37,12 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('marriageRegistrations', MarriageRegistrationController::class);
 
     // // New route for incentive application ===> example
-    // Route::get('/incentive', function () {
-    //     return view('incentiveApplication/index');
-    // });
-    
-    Route::get('/incentiveApplication/index', [IncentiveApplicationController::class, 'applyIncentive']);
-
+    Route::get('/incentive-application', [IncentiveApplicationController::class, 'index'])->name('incentiveApplication.index');
+    //Route::get('/incentive-application', [IncentiveApplicationController::class, 'create'])->name('incentiveApplication.create');
     
     
     Route::get('/Consultation/index', [ConsultationController::class, 'index']);
