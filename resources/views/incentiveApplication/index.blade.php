@@ -5,94 +5,71 @@
         </h2>
     </x-slot>
 
-    <div class="max-w-md mx-auto bg-white p-8 rounded shadow-md flex-col">
-        <!-- Incentive Application Form -->
-        <form action="{{ route('marriageRegistrations.store') }}" method="post">
-            @csrf
+    <div class="pt-5 pb-5 pl-10 pr-10"> 
+        <div class="flex justify-center space-x-4">
+            <div>
+            <div class="flex-grow h-50 mx-auto bg-white p-8 rounded shadow-md flex-col">
+                <!-- Incentive Application Form -->
+                    @csrf
+                        <!-- Special incentive -->
+                        <div class="flex ...">
+                            <div class="mb-6 w-3/5 pr-3" >
+                                <p class="text-xl text-sky-800" >SPECIAL INCENTIVE ELIGIBILITY REQUIREMENTS FOR WEDDING COUPLE REGISTERED IN PAHANG STATE</p>
+                                <br>
+                                <p>This incentive is provided for couples whose grooms have an income of RM5000.00 and below subject to the specified conditions and guidelines.</p>
+                                <br>
+                                <li>Only Pahang children are eligible to receive this incentive.</li>
+                                <li>Either the groom or the bride must be born in the State of Pahang.</li>
+                                <li>Married couples where only the groom earns RM5000.00 and below are eligible to receive incentives</li>
+                                <li>For marriages outside the state of Pahang, the groom must be a native of Pahang. (Foreign Permission (KBLN))</li>
+                                <li>This marriage must be registered in the State of Pahang with the permission of the District Islamic Religious Office.</li>
+                                <li>Marriages of Pahang children registered outside the state of Pahang, the bride and groom need to make an application and confirmation at the Islamic Religious Office (where the application is located).</li>
+                                <li>For residents in the state of Pahang for at least 10 years or more, it is necessary to obtain confirmation from the Penghulu/Regional Assemblyman/FELDA manager/Qaryah Priest or Coordinator.</li>
+                                <li>A widow or widower or one of the persons whose spouse is a native of Pahang and qualified, married for the first time with another spouse, is eligible to receive the incentive.</li>
+                                <li>Each application must be sent to the District Islamic Religious Office where the Application for Permission or Marriage Registration is made.</li>
+                            </div>
 
-            <div class="mb-4" >
-            <h3 style="text-align:center;">Husband's Information</h3>
-            </div>
+                            <div class="mb-6 w-2/5" >
+                                <div class="container mx-auto bg-blue-100 h-60 pl-5 rounded-lg pt-2 pb-5">
+                                    <p class="text-lg text-sky-800" >INCENTIVE APPLICATION STATUS</p>
+                                    <br>
+                                    <p class="text-gray-500">Status:  not applied</p>
 
-            <!-- Company Name of Husband Workplace-->
-            <div class="mb-4">
-                <label for="workplace" class="block text-sm font-medium text-gray-600">Workplace Name (Company Name)</label>
-                <input type="text" id="workplace" name="workplace_name" class="mt-1 p-2 w-full border rounded-md">
-                @error('workplace_name')
-                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
+                                    <div class="flex items-center justify-center">
+                                        <form action="{{ route('incentiveApplication.create') }}" method="get">
+                                            @csrf
+                                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">APPLY INCENTIVE</button>
+                                        </form>
+                                    </div>
 
-            <!-- Husband Job Position -->
-            <div class="mb-4">
-                <label for="jobPosition" class="block text-sm font-medium text-gray-600">Job Position</label>
-                <input type="text" id="jobPosition" name="job_Position" class="mt-1 p-2 w-full border rounded-md">
-                @error('job_Position')
-                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <!-- Date of Application -->
-            <div class="mb-4">
-                <label for="applyDate" class="block text-sm font-medium text-gray-600">Date of Application [Choose Today's Date]</label>
-                <input type="date" id="applyDate" name="apply_date" class="mt-1 p-2 w-full border rounded-md">
-                @error('apply_date')
-                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
+                    <br>
+                    <!-- Eligible or not -->
 
-            <!-- Bank Category -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600">Bank</label>
-                <select name="bank_category" class="mt-1 p-2 w-full border rounded-md">
-                    <!-- Your existing options -->
-                    <option value="chooseBank">choose bank</option>
-                    <option value="maybank">Maybank</option>
-                    <option value="bankIslam">Bank Islam</option>
-                    <option value="cimb">CIMB</option>
-                    <option value="rhb">RHB</option>
-                    <option value="bankRakyat">Bank Rakyat</option>
-                    <option value="bsn">BSN</option>
-                    <option value="ocbc">OCBC</option>
-                </select>
-                @error('bank_category')
-                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
+                    <div class="mb-6" >
+                        <p class="text-xl text-sky-800" >YOU ARE <b>NOT ELIGIBLE</b> IF:</p>
+                        <br>
+                        <li>Polygamy</li>
+                        <li>Remarriage (same spouse after the end of the iddah period)</li>
+                        <li>Marriage without permission</li>
+                        <li>Both couples are not from Pahang</li>
+                        <li>Men's income exceeds RM 5,000.00</li>
+                    </div>
 
-            <!-- Husband Account Number -->
-            <div class="mb-4">
-                <label for="accountNumber" class="block text-sm font-medium text-gray-600">Account Number [Numbers only]</label>
-                <input type="text" id="accountNumber" name="account_Number" class="mt-1 p-2 w-full border rounded-md">
-                @error('account_Number')
-                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Document Upload -->
-            <div class="mb-1">
-                <label for="bankStatement" class="block text-sm font-medium text-gray-600">Upload Documents 
-                    <li>Bank Statement</li>
-                </label>
-                <input type="file" id="bankStatement" name="bank_statement" class="mt-1">
-                @error('bank_statement')
-                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-            <div class="mb-9">
-                <label for="payslip" class="block text-sm font-medium text-gray-600"> 
-                    <li>Payslip</li>
-                </label>
-                <input type="file" id="payslip" name="payslip" class="mt-1">
-                @error('payslip')
-                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
-                @enderror
-            </div>
-
-            
-
-            <!-- Submit Button -->
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
-        </form>
+                    <br>
+                    
+                    <div class="mb-6" >
+                        <p class="text-xl text-sky-800" >DOCUMENTS REQUIRED</p>
+                        <br>
+                        <li>Bank Statement</li>
+                        <li>Pay Slip</li>
+                    </div>
+                    
+                </div>                                                                          
+        </div>
+        </div>
     </div>
 </x-app-layout>

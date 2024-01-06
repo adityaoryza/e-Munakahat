@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function () {
 
     // // New route for incentive application ===> example
     Route::get('/incentive-application', [IncentiveApplicationController::class, 'index'])->name('incentiveApplication.index');
+    Route::get('/create', [IncentiveApplicationController::class, 'create'])->name('incentiveApplication.create');
+    Route::post('/incentive-application', [IncentiveApplicationController::class, 'store'])->name('incentiveApplication.store');
+    //Route::get('/incentive-application', [IncentiveApplicationController::class, 'show'])->name('incentive-application.show');
     //Route::get('/incentive-application', [IncentiveApplicationController::class, 'create'])->name('incentiveApplication.create');
     
     
