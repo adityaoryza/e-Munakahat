@@ -31,10 +31,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // New route for marriage registrations
-    Route::get('/marriage-registrations/create', [MarriageRegistrationController::class, 'create'])->name('marriageRegistrations.create');
-    Route::get('/marriage-registration', [MarriageRegistrationController::class, 'show'])->name('marriage-registration.show');
-    Route::post('/marriage-registration', [MarriageRegistrationController::class, 'store'])->name('marriage-registration.store');
-    Route::resource('marriageRegistrations', MarriageRegistrationController::class);
+    Route::get('/marriageRegistrations', [MarriageRegistrationController::class, 'index'])->name('marriageRegistrations');
+    Route::get('/marriageRegistrations/create', [MarriageRegistrationController::class, 'create']);
+    Route::post('/marriageRegistrations', [MarriageRegistrationController::class, 'store']);
+    Route::get('/marriageRegistrations/{marriage}/edit', [MarriageRegistrationController::class, 'edit']);
+    Route::patch('/marriageRegistrations/{marriage}', [MarriageRegistrationController::class, 'update']);
+    Route::get('/marriageRegistrations/{marriage}', [MarriageRegistrationController::class, 'destroy']);
 
     // // New route for incentive application ===> example
     Route::get('/incentive-application', [IncentiveApplicationController::class, 'index'])->name('incentiveApplication.index');
