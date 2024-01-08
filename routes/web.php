@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MarriageRegistrationController;
+use App\Http\Controllers\IncentiveApplicationController;
+use App\Http\Controllers\ConsultationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +29,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // New route for marriage registrations
+    Route::get('/marriage-registrations/create', [MarriageRegistrationController::class, 'create'])->name('marriageRegistrations.create');
+    Route::get('/marriage-registration', [MarriageRegistrationController::class, 'show'])->name('marriage-registration.show');
+    Route::post('/marriage-registration', [MarriageRegistrationController::class, 'store'])->name('marriage-registration.store');
+    Route::resource('marriageRegistrations', MarriageRegistrationController::class);
+
+    // // New route for incentive application ===> example
+    Route::get('/incentive-application', [IncentiveApplicationController::class, 'index'])->name('incentiveApplication.index');
+    Route::get('/create', [IncentiveApplicationController::class, 'create'])->name('incentiveApplication.create');
+    Route::post('/incentive-application', [IncentiveApplicationController::class, 'store'])->name('incentiveApplication.store');
+    //Route::get('/incentive-application', [IncentiveApplicationController::class, 'show'])->name('incentive-application.show');
+    //Route::get('/incentive-application', [IncentiveApplicationController::class, 'create'])->name('incentiveApplication.create');
+    
+    
+    Route::get('/Consultation/index', [ConsultationController::class, 'index']);
+    
 });
 
 require __DIR__.'/auth.php';

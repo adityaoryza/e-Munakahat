@@ -10,6 +10,7 @@ class MarriageRegistrationController extends Controller
     /**
      * Display a listing of the resource.
      */
+  
     public function index()
     {
         //
@@ -20,7 +21,7 @@ class MarriageRegistrationController extends Controller
      */
     public function create()
     {
-        //
+        return view('marriageRegistrations.create');
     }
 
     /**
@@ -28,7 +29,19 @@ class MarriageRegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul' => 'required|max:50',
+            'pengarang' => 'required|max:30',
+            'penerbit' => 'required|max:50',
+            'tahun_terbit' => 'required',
+            'isbn' => 'required|max:20',
+            'jumlah_buku' => 'required|max:5',
+            'lokasi' => 'required|max:50',
+            'tanggal_input' => 'required'
+        ]);
+
+    Books::create($request->all());
+    return redirect('/books')->with('pesan', 'Data buku berhasil ditambahkan');
     }
 
     /**
@@ -36,7 +49,7 @@ class MarriageRegistrationController extends Controller
      */
     public function show(MarriageRegistration $marriageRegistration)
     {
-        //
+        return view('marriage-registration.show', ['marriageRegistration' => $marriageRegistration]);
     }
 
     /**
