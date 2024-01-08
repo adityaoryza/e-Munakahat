@@ -26,10 +26,18 @@
             <label for="description">Description:</label>
             <textarea id="description" required></textarea>
             <br>
-            <label for="duration">Duration (in days):</label>
-            <input type="number" id="duration" required>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <br>
+            <label for="time">Time:</label>
+            <input type="text" id="time" name="time" placeholder="e.g., 10:00 AM" required>
+            <br>
+            <label for="payment_proof">Payment Proof (PDF):</label>
+            <input type="file" id="payment_proof" name="payment_proof" accept=".pdf" required>
             <br>
             <button type="button" onclick="createCourse()">Create Course</button>
+            <br>
+            <button type="button" onclick="confirm()">Confirm Course</button>
         </form>
         <button onclick="closeCreateForm()">Cancel</button>
     </div>

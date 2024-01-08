@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('marriage_preparation_courses', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('CourseID')->unique();
+            $table->date('DateCourse')->nullable(false);
+            $table->timestamp('TimeCourse')->nullable(false);
+            $table->string('VenueCourse', 100)->nullable(false);
+            $table->string('AttendanceStatus', 100)->nullable(false);
+            $table->string('PaymentProof', 100)->nullable(false);
+            $table->string('PaymentRef', 100)->unique()->nullable(false);
             $table->timestamps();
         });
     }
@@ -23,5 +30,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('marriage_preparation_courses');
+        Schema::dropIfExists('course_certs');
     }
 };
