@@ -73,7 +73,7 @@ class IncentiveApplicationController extends Controller
      */
     public function edit(IncentiveApplication $incentiveApplication)
     {
-        //
+        return view('incentive-application.edit', ['incentiveApplication' => $incentiveApplication]);
     }
 
     /**
@@ -81,7 +81,23 @@ class IncentiveApplicationController extends Controller
      */
     public function update(Request $request, IncentiveApplication $incentiveApplication)
     {
-        //
+        // Validate and update the incentive application data
+        $validatedData = $request->validate([
+            // Define your validation rules here based on your requirements
+            'applicantID' => 'required|string|max:50',
+            'marriageID' => 'nullable|string|max:255',
+            'incentive_status' => 'required|string|max:10',
+            'incentive_apply_date' => 'required|date',
+            'groom_job_position' => 'required|string|max:80',
+            'groom_payslip' => 'required|file', // Assuming it's a file upload
+            'groom_bank_statement' => 'required|file', // Assuming it's a file upload
+            'groom_acc_number' => 'required|integer',
+        ]);
+
+        // Update the incentive application data
+        $incentiveApplication->update($validatedData);
+
+        return redirect()->route('incentive-application.show', ['incentiveApplication' => $incentiveApplication])->with('success', 'Incentive application updated successfully.');
     }
 
     /**
@@ -89,6 +105,9 @@ class IncentiveApplicationController extends Controller
      */
     public function destroy(IncentiveApplication $incentiveApplication)
     {
-        //
+        // Delete the incentive application
+        $incentiveApplication->delete();
+
+        return redirect()->route('incentive-application.index')->with('success', 'Incentive application deleted successfully.');
     }
 }
