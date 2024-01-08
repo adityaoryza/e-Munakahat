@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Marriage Preparation Courses</title>
+</head>
+<body>
+
+<div id="app">
+    <h1>Marriage Preparation Courses</h1>
+
+    <ul id="courseList">
+        <!-- Courses will be dynamically added here using JavaScript -->
+    </ul>
+
+    <button onclick="openCreateForm()">Create a new course</button>
+
+    <div id="createForm" class="hidden">
+        <h2>Create a new Marriage Preparation Course</h2>
+        <form id="courseForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <br>
+            <label for="description">Description:</label>
+            <textarea id="description" required></textarea>
+            <br>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            <br>
+            <label for="time">Time:</label>
+            <input type="text" id="time" name="time" placeholder="e.g., 10:00 AM" required>
+            <br>
+            <label for="payment_proof">Payment Proof (PDF):</label>
+            <input type="file" id="payment_proof" name="payment_proof" accept=".pdf" required>
+            <br>
+            <button type="button" onclick="createCourse()">Create Course</button>
+            <br>
+            <button type="button" onclick="confirm()">Confirm Course</button>
+        </form>
+        <button onclick="closeCreateForm()">Cancel</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

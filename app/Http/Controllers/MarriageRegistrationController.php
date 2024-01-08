@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\MarriageRegistration;
+use App\Models\Applicants;
 use Illuminate\Http\Request;
 
 class MarriageRegistrationController extends Controller
@@ -11,14 +12,14 @@ class MarriageRegistrationController extends Controller
      * Display a listing of the resource.
      */
   
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+     public function index()
+     {
+         $applicants = Applicants::all();  // Fetch all applicants
+     
+         return view('marriageRegistrations.index', compact('applicants'));  // Pass to view
+     }
+     
+    
     public function create()
     {
         return view('marriageRegistrations.create');
@@ -29,19 +30,7 @@ class MarriageRegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'judul' => 'required|max:50',
-            'pengarang' => 'required|max:30',
-            'penerbit' => 'required|max:50',
-            'tahun_terbit' => 'required',
-            'isbn' => 'required|max:20',
-            'jumlah_buku' => 'required|max:5',
-            'lokasi' => 'required|max:50',
-            'tanggal_input' => 'required'
-        ]);
-
-    Books::create($request->all());
-    return redirect('/books')->with('pesan', 'Data buku berhasil ditambahkan');
+  
     }
 
     /**

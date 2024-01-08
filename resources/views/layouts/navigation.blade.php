@@ -18,8 +18,8 @@
                 </div>
                 <!-- Marriage Registrations -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('marriageRegistrations.create')"
-                        :active="request()->routeIs('marriageRegistrations.*')">
+                    <x-nav-link :href="route('marriageRegistrations')"
+                        :active="request()->routeIs('marriageRegistrations')">
                         {{ __('Registrations') }}
                     </x-nav-link>
                 </div>
@@ -30,7 +30,7 @@
                         {{ __('Incentive') }}
                     </x-nav-link>
                 </div>
-             
+
             </div>
 
             <!-- Settings Dropdown -->

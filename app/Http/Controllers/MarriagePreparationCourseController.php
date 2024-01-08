@@ -12,7 +12,9 @@ class MarriagePreparationCourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = MarriagePreparationCourse::all();
+
+        return view('marriage-preparation-course.index', compact('courses'));
     }
 
     /**
@@ -20,7 +22,7 @@ class MarriagePreparationCourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('marriage-preparation-course.create');
     }
 
     /**
@@ -28,7 +30,27 @@ class MarriagePreparationCourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Applicant Name' => 'required|string',
+            'description' => 'required|string',
+            'date' => 'required|date',
+            'time' => 'required|string',
+            'payment_proof' => 'required|mimes:pdf|max:2048', // PDF file, max size 2MB
+            //  other validation rules 
+        ]);
+        $data = $request->all();
+
+        // Handling file upload (payment proof)
+        if ($request->hasFile('payment_proof')) {
+            $file = $request->file('payment_proof');
+            $fileName = time() . '_' . $file->getApplicantOriginalName();
+            $file->storeAs('payment_proofs', $fileName, 'public');
+            $data['payment_proof'] = $fileName;
+        }
+
+        MarriagePreparationCourse::create($request->all());
+
+        return redirect()->route('marriage-preparation-courses.index')->with('success', 'Course created successfully.');
     }
 
     /**
@@ -36,7 +58,7 @@ class MarriagePreparationCourseController extends Controller
      */
     public function show(MarriagePreparationCourse $marriagePreparationCourse)
     {
-        //
+        return view('marriage-preparation-course.show', compact('marriagePreparationCourse'));
     }
 
     /**
@@ -44,7 +66,7 @@ class MarriagePreparationCourseController extends Controller
      */
     public function edit(MarriagePreparationCourse $marriagePreparationCourse)
     {
-        //
+        return view('marriage-preparation-course.edit', compact('marriagePreparationCourse'));
     }
 
     /**
@@ -52,7 +74,16 @@ class MarriagePreparationCourseController extends Controller
      */
     public function update(Request $request, MarriagePreparationCourse $marriagePreparationCourse)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'duration' => 'required|integer',
+            // Add other rule
+        ]);
+
+        $marriagePreparationCourse->update($request->all());
+
+        return redirect()->route('marriage-preparation-courses.index')->with('success', 'Course updated successfully.');
     }
 
     /**
@@ -60,6 +91,8 @@ class MarriagePreparationCourseController extends Controller
      */
     public function destroy(MarriagePreparationCourse $marriagePreparationCourse)
     {
-        //
+        $marriagePreparationCourse->delete();
+
+        return redirect()->route('marriage-preparation-courses.index')->with('success', 'Course deleted successfully.');
     }
 }
