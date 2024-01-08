@@ -45,7 +45,8 @@ class IncentiveApplicationController extends Controller
      */
     public function show(IncentiveApplication $incentiveApplication)
     {
-        //
+        return view('incentive-application.show', ['$incentiveApplication' => $incentiveApplication]);
+        //return view('marriage-registration.show', ['marriageRegistration' => $marriageRegistration]);
     }
 
     /**
