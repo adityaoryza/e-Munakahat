@@ -1,18 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\MarriagePreCourse;
 
-use App\Models\MarriagePreparationCourse;
 use Illuminate\Http\Request;
 
-class MarriagePreparationCourseController extends Controller
+class MarriagePreCourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $courses = MarriagePreparationCourse::all();
+        $courses = MarriagePreCourse::all();
 
         return view('marriage-preparation-course.index', compact('courses'));
     }

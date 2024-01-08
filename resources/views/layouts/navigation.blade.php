@@ -16,6 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                
                 <!-- Marriage Registrations -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('marriageRegistrations')"
@@ -31,6 +32,12 @@
                     </x-nav-link>
                 </div>
 
+                <!-- Marriage Preparation Course -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('MarriagePreCourse.index')"
+                        :active="request()->routeIs('MarriagePreCourse.*')">
+                        {{ __('Marriage Preparation Course') }}
+                    </x-nav-link>
             </div>
 
             <!-- Settings Dropdown -->

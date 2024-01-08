@@ -12,7 +12,9 @@
     <h1>Marriage Preparation Courses</h1>
 
     <ul id="courseList">
+        
         <!-- Courses will be dynamically added here using JavaScript -->
+        
     </ul>
 
     <button onclick="openCreateForm()">Create a new course</button>

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MarriageRegistrationController;
 use App\Http\Controllers\IncentiveApplicationController;
 use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\MarriagePreCourseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +45,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/incentive-application', [IncentiveApplicationController::class, 'store'])->name('incentiveApplication.store');
     //Route::get('/incentive-application', [IncentiveApplicationController::class, 'show'])->name('incentive-application.show');
     //Route::get('/incentive-application', [IncentiveApplicationController::class, 'create'])->name('incentiveApplication.create');
-    
+
+   // New route for marriage preparation course
+Route::get('/marriage-preparation-course', [MarriagePreCourseController::class, 'index'])->name('marriage-preparation-course.index');
+Route::get('/create', [MarriagePreCourseController::class, 'create'])->name('MarriagePreCourse.create');
+Route::post('/MarriagePreCourse', [MarriagePreCourseController::class, 'store'])->name('MarriagePreCourse.store');
+Route::resource('MarriagePreCourse', MarriagePreCourseController::class);
+
+
     
     Route::get('/Consultation/index', [ConsultationController::class, 'index']);
     
