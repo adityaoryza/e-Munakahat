@@ -122,7 +122,6 @@
                                 onclick="window.location.href='/marriageRegistrations'">Cancel</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>

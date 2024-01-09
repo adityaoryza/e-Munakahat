@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // New route for marriage registrations
+    // marriage registrations routes 
     Route::get('/marriageRegistrations', [MarriageRegistrationController::class, 'index'])->name('marriageRegistrations');
     Route::get('/marriageRegistrations/create', [MarriageRegistrationController::class, 'create']);
     Route::post('/marriageRegistrations', [MarriageRegistrationController::class, 'store']);
@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/marriageRegistrations/{marriage}', [MarriageRegistrationController::class, 'destroy']);
     Route::get('/marriageRegistrations/{marriage}', [MarriageRegistrationController::class, 'exportExcel']);
 
+    
     // // New route for incentive application ===> example
     Route::get('/incentive-application', [IncentiveApplicationController::class, 'index'])->name('incentiveApplication.index');
     Route::get('/create', [IncentiveApplicationController::class, 'create'])->name('incentiveApplication.create');
