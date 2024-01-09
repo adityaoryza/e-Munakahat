@@ -28,8 +28,20 @@ class ConsultationPlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $data = $request->validate([
+            'CounselorID' => 'required|unique:conselors',
+            'ConsultationID' => 'required',
+            'counselor_gender' => 'required|in:male,female',
+            'counselor_name' => 'required|max:100',
+            'counselor_no' => 'required|numeric',
+            'counselor_email' => 'required|email|max:20',
+    ])
+     
+    Counselor::create($data);
+
+    return redirect()->route('conselors.index')->with('Success', 'Counselor is signed');
+
+}
 
     /**
      * Display the specified resource.

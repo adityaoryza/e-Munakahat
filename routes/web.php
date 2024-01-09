@@ -55,8 +55,11 @@ Route::post('/MarriagePreCourse', [MarriagePreCourseController::class, 'store'])
 Route::resource('MarriagePreCourse', MarriagePreCourseController::class);
 
 
-    
-    Route::get('/Consultation/index', [ConsultationController::class, 'index']);
+   // New route consultation
+Route::get('/Consultation/index', [ConsultationController::class, 'index']);
+Route::get('/Consultation/create', [ConsultationController::class, 'create']);
+
+
     
 });
 
