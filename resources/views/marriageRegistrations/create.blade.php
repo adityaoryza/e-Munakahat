@@ -3,33 +3,8 @@
         <div class="bg-white shadow overflow-hidden sm:rounded-lg">
             <div class="px-4 py-5 sm:p-6">
 
-                <form method="POST" action="/marriage-registrations" onsubmit="return validateForm()">
+                <form method="POST" action="/marriageRegistrations">
                     @csrf
-                    <script>
-                    function validateForm() {
-                        const requiredFields = [
-                            "applicant1_name",
-                            "applicant1_gender",
-                            "applicant1_mykad",
-                            "applicant2_name",
-                            "applicant2_gender",
-                            "applicant2_mykad",
-                            "marriage_type"
-                        ];
-
-                        for (const field of requiredFields) {
-                            const value = document.getElementById(field).value;
-                            if (value.trim() === "") {
-                                alert(`Please fill in the required field: ${field.replace("_", " ")}`);
-                                return false; // Prevent form submission
-                            }
-                        }
-
-                        // Add additional validation rules as needed, e.g., for MyKad format, age range, etc.
-
-                        return true; // Allow form submission if all validations pass
-                    }
-                    </script>
                     <h2 class="text-xl font-bold mb-4">Marriage Registration Form</h2>
 
 
@@ -40,13 +15,13 @@
                             <div class="mb-4">
                                 <label for="applicant_name" class="block text-gray-700 font-bold mb-2">Applicant Name
                                     *</label>
-                                <input type="text" id="applicant1_name" name="applicant_name"
+                                <input type="text" id="username" name="username"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
 
                             <div class="mb-4">
                                 <label for="gender" class="block text-gray-700 font-bold mb-2">Gender *</label>
-                                <select id="gender" name="gender"
+                                <select id="Gender" name="Gender"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -61,20 +36,20 @@
 
                             <div class="mb-4">
                                 <label for="age" class="block text-gray-700 font-bold mb-2">Age</label>
-                                <input type="number" id="age" name="age"
+                                <input type="number" id="Age" name="Age"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
 
                             <div class="mb-4">
                                 <label for="nationality" class="block text-gray-700 font-bold mb-2">Nationality</label>
-                                <input type="text" id="nationality" name="nationality"
+                                <input type="text" id="Nationality" name="Nationality"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
 
                             <div class="mb-4">
                                 <label for="date_of_birth" class="block text-gray-700 font-bold mb-2">Date of
                                     Birth</label>
-                                <input type="date" id="date_of_birth" name="date_of_birth"
+                                <input type="date" id="DateOfBirth" name="DateOfBirth"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
                         </div>
@@ -83,15 +58,15 @@
                             <h3 class="text-lg font-medium mb-4 text-red-700">Applicant 2 Information</h3>
 
                             <div class="mb-4">
-                                <label for="applicant_name" class="block text-gray-700 font-bold mb-2">Applicant Name
+                                <label for="Username" class="block text-gray-700 font-bold mb-2">Applicant Name
                                     *</label>
-                                <input type="text" id="applicant_name" name="applicant_name"
+                                <input type="text" id="Username" name="Username"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
 
                             <div class="mb-4">
-                                <label for="gender" class="block text-gray-700 font-bold mb-2">Gender *</label>
-                                <select id="gender" name="gender"
+                                <label for="Gender" class="block text-gray-700 font-bold mb-2">Gender *</label>
+                                <select id="Gender" name="Gender"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
@@ -105,29 +80,30 @@
                             </div>
 
                             <div class="mb-4">
-                                <label for="age" class="block text-gray-700 font-bold mb-2">Age</label>
-                                <input type="number" id="age" name="age"
+                                <label for="Age" class="block text-gray-700 font-bold mb-2">Age</label>
+                                <input type="number" id="Age" name="Age"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
 
                             <div class="mb-4">
-                                <label for="nationality" class="block text-gray-700 font-bold mb-2">Nationality</label>
-                                <input type="text" id="nationality" name="nationality"
+                                <label for="Nationality" class="block text-gray-700 font-bold mb-2">Nationality</label>
+                                <input type="text" id="Nationality" name="Nationality"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
 
                             <div class="mb-4">
-                                <label for="date_of_birth" class="block text-gray-700 font-bold mb-2">Date of
+                                <label for="DateOfBirth" class="block text-gray-700 font-bold mb-2">Date of
                                     Birth</label>
-                                <input type="date" id="date_of_birth" name="date_of_birth"
+                                <input type="date" id="DateOfBirth" name="DateOfBirth"
                                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             </div>
                         </div>
                     </div>
 
                     <div class="mb-4">
-                        <label for="marriage_type" class="block text-gray-700 font-bold mb-2">Type of Marriage *</label>
-                        <select id="marriage_type" name="marriage_type"
+                        <label for="RegistrationType" class="block text-gray-700 font-bold mb-2">Type of Marriage
+                            *</label>
+                        <select id="RegistrationType" name="RegistrationType"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             <option value="permitted">Permitted Marriage</option>
                             <option value="voluntary">Voluntary Marriage</option>

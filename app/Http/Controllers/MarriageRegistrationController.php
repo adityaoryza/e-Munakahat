@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\MarriageRegistration;
 use App\Models\Applicants;
 use Illuminate\Http\Request;
+use App\Exports\MarriageRegistrationsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 
 class MarriageRegistrationController extends Controller
 {
@@ -30,7 +34,50 @@ class MarriageRegistrationController extends Controller
      */
     public function store(Request $request)
     {
-  
+        // Validate the form data
+        $request->validate([
+            'username' => 'required',
+            'Gender' => 'required',
+            'mykad' => 'required',
+            'RegistrationType' => 'required',
+        ]);
+    
+        // Extract the form data
+        $applicant1 = [
+            'name' => $request->input('username'),
+            'gender' => $request->input('Gender'),
+            'mykad' => $request->input('mykad'),
+            'age' => $request->input('Age', null),  // Age is optional
+            'nationality' => $request->input('Nationality', null), // Nationality is optional
+            'date_of_birth' => $request->input('DateOfBirth', null), // Date of birth is optional
+        ];
+    
+        $applicant2 = [
+            'name' => $request->input('Username'),
+            'gender' => $request->input('Gender'),
+            'mykad' => $request->input('mykad'),
+            'age' => $request->input('Age', null),  // Age is optional
+            'nationality' => $request->input('Nationality', null), // Nationality is optional
+            'date_of_birth' => $request->input('DateOfBirth', null), // Date of birth is optional
+        ];
+    
+        $marriageType = $request->input('RegistrationType');
+    
+        // Create a new marriage registration record in your database
+        // (Replace this placeholder with your actual database logic)
+        $marriageRegistration = MarriageRegistration::create([
+            'applicant1' => $applicant1,
+            'applicant2' => $applicant2,
+            'marriage_type' => $marriageType,
+        ]);
+    
+        // Redirect to a success page or display a success message
+        return redirect()->route('marriageRegistrations.index')->with('success', 'Marriage registration submitted successfully!');
+    }
+    
+    public function exportExcel()
+    {
+        return Excel::download(new MarriageRegistrationsExport, 'MarriageRegistrations.xlsx');
     }
 
     /**

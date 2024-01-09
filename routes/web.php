@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/marriageRegistrations/{marriage}/edit', [MarriageRegistrationController::class, 'edit']);
     Route::patch('/marriageRegistrations/{marriage}', [MarriageRegistrationController::class, 'update']);
     Route::get('/marriageRegistrations/{marriage}', [MarriageRegistrationController::class, 'destroy']);
+    Route::get('/marriageRegistrations/{marriage}', [MarriageRegistrationController::class, 'exportExcel']);
 
     // // New route for incentive application ===> example
     Route::get('/incentive-application', [IncentiveApplicationController::class, 'index'])->name('incentiveApplication.index');
