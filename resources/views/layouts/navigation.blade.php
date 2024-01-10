@@ -34,8 +34,8 @@
 
                                 <!-- Consultation -->
                                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('consultation.index')"
-                        :active="request()->routeIs('consultation.*')">
+                    <x-nav-link :href="route('Consultation.create')"
+                        :active="request()->routeIs('Consultation.*')">
                         {{ __('Consultation') }}
                     </x-nav-link>
                 </div>
