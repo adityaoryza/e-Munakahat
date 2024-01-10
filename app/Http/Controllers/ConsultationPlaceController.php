@@ -35,12 +35,11 @@ class ConsultationPlaceController extends Controller
             'counselor_name' => 'required|max:100',
             'counselor_no' => 'required|numeric',
             'counselor_email' => 'required|email|max:20',
-    ])
+        ]);
      
     Counselor::create($data);
 
     return redirect()->route('conselors.index')->with('Success', 'Counselor is signed');
-
 }
 
     /**

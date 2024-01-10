@@ -79,9 +79,9 @@ class ConsultationController extends Controller
             'consultation_date' => 'required|date',
             'consultation_time' => 'required|date_format:H;i', ]);
 
-            $consultation->update($data);
+            $consultation ->update($data);
             return redirect()->route('consultation.index')->with('success', 'Consultation updated successfully');
-    }
+        }
 
     /**
      * Remove the specified resource from storage.                                                                                                                                                                                                                                                                                                                                                                                                                                                            nnnnnnnnnnnnnnnnnnnnn
