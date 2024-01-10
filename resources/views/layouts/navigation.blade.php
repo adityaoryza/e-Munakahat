@@ -32,14 +32,6 @@
                     </x-nav-link>
                 </div>
 
-                                <!-- Consultation -->
-                                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('Consultation.create')"
-                        :active="request()->routeIs('Consultation.*')">
-                        {{ __('Consultation') }}
-                    </x-nav-link>
-                </div>
-
                 <!-- Marriage Preparation Course -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('MarriagePreCourse.index')"
