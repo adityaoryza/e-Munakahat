@@ -77,20 +77,20 @@ class ConsultationController extends Controller
             'consultation_purpose' => 'required',
             'consultation_description' => 'required',
             'consultation_date' => 'required|date',
-            'consultation_time' => 'required|date_format:H;i', ])
+            'consultation_time' => 'required|date_format:H;i', ]);
 
             $consultation->update($data);
             return redirect()->route('consultation.index')->with('success', 'Consultation updated successfully');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from storage.                                                                                                                                                                                                                                                                                                                                                                                                                                                            nnnnnnnnnnnnnnnnnnnnn
      */
     public function destroy(Consultation $consultation)
     {
         $consultation = Consultation::findOrFail($id);
         $consultation->delete();
 
-        return redirect()->route('consultations.index')->with('success', 'Consultation deleted successfully')
+        return redirect()->route('consultations.index')->with('success', 'Consultation deleted successfully');
     }
 }
