@@ -15,13 +15,38 @@ class IncentiveApplicationController extends Controller
     *    return view('incentiveApplication.index');
     *}
     *
-     * Display a listing of the resource.
+     * Display the .
      */
     public function index()
     {
         //
         return view('incentiveApplication.index');
     }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function views()
+    {
+        //
+        return view('incentiveApplication.views');
+    }
+
+
+    public function showIncentiveApplications()
+    {
+        $incentiveApplications = IncentiveApplication::all(); // Assuming you have an IncentiveApplication model
+
+        return view('views', compact('incentiveApplications'));
+    }
+    
+    public function showApplications()
+    {
+        $incentiveApplications = IncentiveApplication::all();
+
+        return view('incentiveApplication.views', compact('incentiveApplications'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

@@ -1,15 +1,39 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Incentive Application / Apply') }}
+            {{ __('Incentive Application / Apply Incentive') }}
         </h2>
     </x-slot>
 
     <div class="pt-5 pb-5 pl-10 pr-10"> 
     <div class="grow h-50 mx-auto bg-white p-8 rounded shadow-md flex-col">
         <!-- Incentive Application Form -->
-        <form action="{{ route('incentiveApplication.store') }}" method="post">
+        <form method="POST" action="/marriage-registrations" onsubmit="return validateMarriageForm()">
             @csrf
+            <script>
+                function validateForm() {
+                    // Add validation rules here as needed
+                    const requiredFields = [
+                            "workplace",
+                            "jobPosition",
+                            "bankCategory",
+                            "accountNumber",
+                            "bankStatement",
+                            "payslip"
+                    ];
+
+                    // Sample validation for workplace name (required)
+                    for (const field of requiredFields) {
+                        const value = document.getElementById(field).value;
+                        if (value.trim() === "") {
+                            alert(`Please fill in the required field: ${field.replace("_", " ")}`);
+                            return false; // Prevent form submission
+                        }
+                    }
+                    // Add more validations as needed
+                    return true; // Allow form submission if all validations pass
+                }
+            </script>
 
             <div class="mb-4" >
             <h3 style="text-align:center;">Husband's Information</h3>
@@ -33,19 +57,19 @@
                 @enderror
             </div>
 
-            <!-- Date of Application -->
-            <div class="mb-4">
+            <!-- Date of Application 
+            *<div class="mb-4">
                 <label for="applyDate" class="block text-sm font-medium text-gray-600">Date of Application [Choose Today's Date]</label>
                 <input type="date" id="applyDate" name="apply_date" class="mt-1 p-2 w-full border rounded-md">
                 @error('apply_date')
                 <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
                 @enderror
-            </div>
+            </div> -->
 
             <!-- Bank Category -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-600">Bank</label>
-                <select name="bank_category" class="mt-1 p-2 w-full border rounded-md">
+                <select name="bank_category" id="bankCategory" class="mt-1 p-2 w-full border rounded-md">
                     <!-- Your existing options -->
                     <option value="chooseBank">choose bank</option>
                     <option value="maybank">Maybank</option>

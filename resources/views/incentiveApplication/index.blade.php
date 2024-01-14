@@ -30,17 +30,22 @@
                             </div>
 
                             <div class="mb-6 w-2/5" >
-                                <div class="container mx-auto bg-blue-100 h-60 pl-5 rounded-lg pt-2 pb-5">
-                                    <p class="text-lg text-sky-800" >INCENTIVE APPLICATION STATUS</p>
+                                <div class="container mx-auto bg-blue-100 h-40 pl-5 rounded-lg pt-2 pb-5">
+                                    <p class="text-lg text-sky-800" >INCENTIVE APPLICATION: </p>
                                     <br>
-                                    <p class="text-gray-500">Status:  not applied</p>
-
-                                    <div class="flex items-center justify-center">
+                                    <div class="flex items-center justify-center pb=5 pt-5">
                                         <form action="{{ route('incentiveApplication.create') }}" method="get">
                                             @csrf
                                             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">APPLY INCENTIVE</button>
                                         </form>
+
+                                        <!-- Add the new button for 'View Applied' -->
+                                        <form action="{{ route('incentiveApplication.views') }}" method="get">
+                                            @csrf
+                                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 ml-4">VIEW APPLIED</button>
+                                        </form>
                                     </div>
+
 
                                 </div>
                             </div>

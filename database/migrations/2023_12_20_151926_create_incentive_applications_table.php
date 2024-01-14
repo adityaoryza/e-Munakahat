@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('incentive_applications', function (Blueprint $table) {
-            $table->id();
+            //$table->id();
             $table->string('IncentiveID', 5)->unique(); // Making IncentiveID unique
             $table->string('applicantID', 50);
             $table->string('marriageID')->nullable();
