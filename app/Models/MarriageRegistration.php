@@ -17,11 +17,15 @@ class MarriageRegistration extends Model
         'UserID',
         'RegistrationType',
         'RegistrationStatus',
-        'RegistrationDate', 
+        'MarriageDate', // Replaced RegistrationDate
+        'PartnerFirstName',
+        'PartnerLastName',
+        'PartnerGender',
+        'PartnerPhoneNum',
     ];
 
     protected $casts = [
-        'RegistrationDate' => 'date',
+        'MarriageDate' => 'date', // Cast MarriageDate as a date
     ];
 
     public function user()

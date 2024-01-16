@@ -27,7 +27,7 @@
                             <thead class="text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 <tr>
                                     <th class="px-6 py-3">No.</th>
-                                    <th class="px-6 py-3">Applicant Name</th>
+                                    <th class="px-6 py-3">Applicant ID</th>
                                     <th class="px-6 py-3">Application Type</th>
                                     <th class="px-6 py-3">Application Date</th>
                                     <th class="px-6 py-3">Status</th>
@@ -35,24 +35,27 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($applicants as $applicant)
+                                @foreach ($marriageRegistrations as $registration)
                                 <tr>
-                                    <td class="px-6 py-4">{{ $loop->iteration }}</td>
                                     <td class="px-6 py-4">
-                                        {{ $applicant->User->FirstName }} {{ $applicant->User->LastName }}
+                                        <a href="/marriageRegistrations/{{ $registration->RegistrationID }}/edit">
+                                            {{ $registration->RegistrationID }}
+                                        </a>
                                     </td>
-                                    <td class="px-6 py-4">{{ $applicant->Registration->RegistrationType }}</td>
-                                    <td class="px-6 py-4">{{ $applicant->Registration->RegistrationDate }}</td>
-                                    <td class="px-6 py-4">{{ $applicant->Registration->RegistrationStatus }}</td>
-                                    <td class="px-6 py-4 flex justify-end space-x-4">
-                                        <a href="/applicants/{{ $applicant->ApplicantID }}/edit"
+                                    <td class="px-6 py-3">{{ $registration->UserID }}</td>
+                                    <td class="px-6 py-3">{{ $registration->RegistrationType }}</td>
+                                    <td class="px-6 py-3">{{ $registration->MarriageDate }}</td>
+                                    <td class="px-6 py-3">{{ $registration->RegistrationStatus }}</td>
+                                    <td class="px-6 py-3 flex justify-end space-x-4">
+                                        <a href="/marriageRegistrations/{{ $registration->RegistrationID }}/edit"
                                             class="bg-yellow-400 hover:bg-yellow-500 text-white font-bold py-2 px-4 rounded-md">Edit</a>
-                                        <a href="/applicants/{{ $applicant->ApplicantID }}"
+                                        <a href="/marriageRegistrations/{{ $registration->RegistrationID }}"
                                             class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded-md">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
+
                         </table>
                     </div>
                 </div>
