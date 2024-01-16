@@ -10,14 +10,18 @@ class CreateMarriageRegistrationsTable extends Migration
 */
 public function up(): void
 {
-Schema::create('marriage_registrations', function (Blueprint $table) {
-$table->id('RegistrationID');
-$table->foreignId('id')->constrained('users', 'id')->onDelete('cascade');
-$table->string('RegistrationType', 100)->default('Permitted');
-$table->string('RegistrationStatus', 100)->default('Pending');
-$table->date('RegistrationDate');
-$table->timestamps();
-});
+    Schema::create('marriage_registrations', function (Blueprint $table) {
+        $table->id('RegistrationID');
+        $table->foreignId('UserID')->constrained('users', 'id')->onDelete('cascade'); // Use UserID to match form input
+        $table->string('RegistrationType', 100)->default('Permitted');
+        $table->string('RegistrationStatus', 100)->default('Pending');
+        $table->date('MarriageDate'); // Rename to match form input
+        $table->string('PartnerFirstName', 100);
+        $table->string('PartnerLastName', 100);
+        $table->string('PartnerGender', 10);
+        $table->string('PartnerPhoneNum', 20);
+        $table->timestamps();
+    });
 }
 
 /**
