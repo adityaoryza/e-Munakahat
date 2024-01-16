@@ -8,33 +8,9 @@
     <div class="pt-5 pb-5 pl-10 pr-10"> 
     <div class="grow h-50 mx-auto bg-white p-8 rounded shadow-md flex-col">
         <!-- Incentive Application Form -->
-        <form method="POST" action="/marriage-registrations" onsubmit="return validateMarriageForm()">
+        <form action="{{ route('incentiveApplication.create') }}" method="post">
             @csrf
-            <script>
-                function validateForm() {
-                    // Add validation rules here as needed
-                    const requiredFields = [
-                            "workplace",
-                            "jobPosition",
-                            "bankCategory",
-                            "accountNumber",
-                            "bankStatement",
-                            "payslip"
-                    ];
-
-                    // Sample validation for workplace name (required)
-                    for (const field of requiredFields) {
-                        const value = document.getElementById(field).value;
-                        if (value.trim() === "") {
-                            alert(`Please fill in the required field: ${field.replace("_", " ")}`);
-                            return false; // Prevent form submission
-                        }
-                    }
-                    // Add more validations as needed
-                    return true; // Allow form submission if all validations pass
-                }
-            </script>
-
+    
             <div class="mb-4" >
             <h3 style="text-align:center;">Husband's Information</h3>
             </div>
@@ -115,17 +91,61 @@
             </div>
 
             <!-- Submit Button -->
-            <div class="flex items-center justify-center space-x-4">
-                <a href="{{ route('incentiveApplication.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Back</a>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
-            </div>
-
+        <div class="flex items-center justify-center space-x-4">
+            <a href="{{ route('incentiveApplication.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Back</a>
+            <button type="button" onclick="validateAndSubmitForm()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
+        </div>
         </form>
 
 
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        <script>
+            function validateAndSubmitForm() {
+                // Add validation rules here as needed
+                const requiredFields = [
+                    "workplace",
+                    "jobPosition",
+                    "bankCategory",
+                    "accountNumber",
+                    "bankStatement",
+                    "payslip"
+                ];
 
+                // Check if any required field is empty
+                for (const field of requiredFields) {
+                    const value = document.getElementById(field).value;
+                    if (value.trim() === "") {
+                        Swal.fire({
+                            title: 'Validation Error',
+                            text: `Please fill in all required fields.`,
+                            icon: 'error'
+                        });
+                        return;
+                    }
+                }
+
+                // If all validations pass, submit the form
+                document.forms[0].submit();
+
+                // Show success message after form submission
+                Swal.fire({
+                    title: 'Form Submitted!',
+                    text: 'Your form has been successfully submitted.',
+                    icon: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: 'Go Back to Index',
+                    cancelButtonText: 'Stay on Page'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to the index page
+                        window.location.href = "{{ route('incentiveApplication.index') }}";
+                    }
+                });
+            }
+        </script>    
     </div>
 
     </div>
+    
 </x-app-layout>

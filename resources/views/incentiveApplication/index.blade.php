@@ -42,7 +42,7 @@
                                         <!-- Add the new button for 'View Applied' -->
                                         <form action="{{ route('incentiveApplication.views') }}" method="get">
                                             @csrf
-                                            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 ml-4">VIEW APPLIED</button>
+                                            <button type="submit" class="bg-sky-700 text-white px-4 py-2 rounded-md hover:bg-sky-500 ml-4">VIEW APPLIED</button>
                                         </form>
                                     </div>
 
