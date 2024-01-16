@@ -39,7 +39,7 @@ class IncentiveApplicationController extends Controller
 
         return view('views', compact('incentiveApplications'));
     }
-    
+
     public function showApplications()
     {
         $incentiveApplications = IncentiveApplication::all();
@@ -60,8 +60,18 @@ class IncentiveApplicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function __construct()
     {
+        $this->middleware('auth');
+    }
+        
+    
+     public function store(Request $request)
+    {
+        
+        if (!auth()->check()) {
+            return redirect()->route('login');
+        }
         // Validate and store the incentive application data
         $validatedData = $request->validate([
             // Define your validation rules here based on your requirements

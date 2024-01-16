@@ -8,13 +8,31 @@
     <div class="pt-5 pb-5 pl-10 pr-10"> 
     <div class="grow h-50 mx-auto bg-white p-8 rounded shadow-md flex-col">
         <!-- Incentive Application Form -->
-        <form action="{{ route('incentiveApplication.create') }}" method="post">
+        <form action="{{ route('incentiveApplication.store') }}" method="post" enctype="multipart/form-data">
             @csrf
     
             <div class="mb-4" >
             <h3 style="text-align:center;">Husband's Information</h3>
             </div>
 
+            <!-- Husband Name-->
+            <div class="mb-4">
+                <label for="husbandName" class="block text-sm font-medium text-gray-600">Husband Name</label>
+                <input type="text" id="husbandName" name="husband_name" class="mt-1 p-2 w-full border rounded-md">
+                @error('husband_name')
+                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <!-- Husband IC-->
+            <div class="mb-4">
+                <label for="husbandIC" class="block text-sm font-medium text-gray-600">Husband IC Number</label>
+                <input type="text" id="husbandIC" name="husband_ic" class="mt-1 p-2 w-full border rounded-md">
+                @error('husband_ic')
+                <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                @enderror
+            </div>
+            
             <!-- Company Name of Husband Workplace-->
             <div class="mb-4">
                 <label for="workplace" class="block text-sm font-medium text-gray-600">Workplace Name (Company Name)</label>
@@ -27,7 +45,7 @@
             <!-- Husband Job Position -->
             <div class="mb-4">
                 <label for="jobPosition" class="block text-sm font-medium text-gray-600">Job Position</label>
-                <input type="text" id="jobPosition" name="job_Position" class="mt-1 p-2 w-full border rounded-md">
+                <input type="text" id="jobPosition" name="job_position" class="mt-1 p-2 w-full border rounded-md">
                 @error('job_Position')
                 <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
                 @enderror
@@ -63,7 +81,7 @@
 
             <!-- Husband Account Number -->
             <div class="mb-4">
-                <label for="accountNumber" class="block text-sm font-medium text-gray-600">Account Number [Numbers only]</label>
+                <label for="accountNumber" class="block text-sm font-medium text-gray-600">Account Number (Numbers only)</label>
                 <input type="text" id="accountNumber" name="account_Number" class="mt-1 p-2 w-full border rounded-md">
                 @error('account_Number')
                 <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
@@ -72,7 +90,7 @@
 
             <!-- Document Upload -->
             <div class="mb-1">
-                <label for="bankStatement" class="block text-sm font-medium text-gray-600">Upload Documents 
+                <label for="bankStatement" class="block text-sm font-medium text-gray-600">Upload Documents (PDF format ONLY) 
                     <li>Bank Statement</li>
                 </label>
                 <input type="file" id="bankStatement" name="bank_statement" class="mt-1">
@@ -91,10 +109,10 @@
             </div>
 
             <!-- Submit Button -->
-        <div class="flex items-center justify-center space-x-4">
-            <a href="{{ route('incentiveApplication.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Back</a>
-            <button type="button" onclick="validateAndSubmitForm()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
-        </div>
+            <div class="flex items-center justify-center space-x-4">
+                <a href="{{ route('incentiveApplication.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Back</a>
+                <button type="button" onclick="validateAndSubmitForm()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Submit</button>
+            </div>
         </form>
 
 
@@ -104,6 +122,8 @@
             function validateAndSubmitForm() {
                 // Add validation rules here as needed
                 const requiredFields = [
+                    "husbandName",
+                    "husbandIC",
                     "workplace",
                     "jobPosition",
                     "bankCategory",
