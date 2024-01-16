@@ -35,9 +35,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/marriageRegistrations', [MarriageRegistrationController::class, 'index'])->name('marriageRegistrations');
     Route::get('/marriageRegistrations/create', [MarriageRegistrationController::class, 'create']);
     Route::post('/marriageRegistrations', [MarriageRegistrationController::class, 'store']);
-    Route::get('/marriageRegistrations/{marriage}/edit', [MarriageRegistrationController::class, 'edit']);
-    Route::patch('/marriageRegistrations/{marriage}', [MarriageRegistrationController::class, 'update']);
-    Route::get('/marriageRegistrations/{marriage}', [MarriageRegistrationController::class, 'destroy']);
+    Route::get('/marriageRegistrations/{marriageRegistration}/edit', [MarriageRegistrationController::class, 'edit']);
+    Route::patch('/marriageRegistrations/{marriageRegistration}', [MarriageRegistrationController::class, 'update']);
+    // Route::patch('/marriageRegistrations/{marriageRegistration}', [MarriageRegistrationController::class, 'update']);
+    Route::get('/marriageRegistrations/{marriageRegistration}', [MarriageRegistrationController::class, 'destroy']);
 
     
 // delete the routes 

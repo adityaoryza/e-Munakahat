@@ -4,12 +4,12 @@
             <div class="px-4 py-5 sm:p-6">
                 <h2 class="text-xl font-bold mb-4">Edit Marriage Registration</h2>
 
-                <form method="PATCH" action="/marriageRegistrations/{{ $marriageRegistration->RegistrationID }}">
+                <form method="POST" action="/marriageRegistrations/{{ $marriageRegistration->RegistrationID }}">
                     @csrf
-                    @method('PATCH')
+                    @method('patch')
 
                     <div class="mb-4">
-                        <label for="RegistrationType" class="block text-gray-700 font-bold mb-2">Registration Type
+                        <label for="RegistrationType" class="block text-gray-700 font-bold mb-2">Type of Marriage
                             *</label>
                         <select id="RegistrationType" name="RegistrationType"
                             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -20,6 +20,7 @@
                         </select>
                     </div>
 
+
                     <div class="mb-4">
                         <label for="MarriageDate" class="block text-gray-700 font-bold mb-2">Marriage Date *</label>
                         <input type="date" id="MarriageDate" name="MarriageDate"
@@ -28,16 +29,18 @@
                     </div>
 
                     <div class="mb-4">
-                        <label for="RegistrationStatus" class="block text-gray-700 font-bold mb-2">RegistrationStatus
+                        <label for="RegistrationStatus" class="block text-gray-700 font-bold mb-2">Registration Status
                             *</label>
                         <select id="RegistrationStatus" name="RegistrationStatus"
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            <option value="pending" @if ($marriageRegistration->status == 'pending')
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            aria-label="Registration Status">
+                            <option value="pending" @if ($marriageRegistration->RegistrationStatus == 'pending')
                                 selected @endif>Pending</option>
-                            <option value="proceed" @if ($marriageRegistration->status == 'proceed')
+                            <option value="proceed" @if ($marriageRegistration->RegistrationStatus == 'proceed')
                                 selected @endif>Proceed</option>
                         </select>
                     </div>
+
 
                     <div class="grid grid-cols-2 gap-4">
                         <div class="col-span-1 text-right">

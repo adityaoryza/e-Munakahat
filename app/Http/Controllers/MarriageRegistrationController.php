@@ -86,10 +86,10 @@ class MarriageRegistrationController extends Controller
         $marriageRegistration->update([
             'RegistrationType' => $request->RegistrationType,
             'MarriageDate' => $request->MarriageDate,
-            'status' => $request->RegistrationStatus,
+            'RegistrationStatus' => $request->RegistrationStatus,
         ]);
 
-        return redirect()->route('marriageRegistrations.index')->with('success', 'Registration updated successfully');
+        return redirect()->route('marriageRegistrations')->with('success', 'Registration updated successfully');
     }
     
 
