@@ -13,22 +13,18 @@ return new class extends Migration
     {
         Schema::create('incentive_applications', function (Blueprint $table) {
             $table->id();
-            $table->string('husbandName', 255);
-            $table->string('husbandIC', 50);
-            $table->string('workplace', 255);
-            $table->string('jobPosition', 80);
-            $table->string('bankCategory', 255);
-            $table->integer('accountNumber');
-            $table->string('bankStatement', 255);
-            $table->string('payslip', 255);
+            $table->string('husbandName');
+            $table->string('husbandIC');
+            $table->string('workplace');
+            $table->string('jobPosition');
+            $table->string('bankCategory');
+            $table->string('accountNumber');
+            $table->binary('bankStatement');
+            $table->binary('payslip');
             $table->timestamps();
         });
-
-        // Adding foreign key constraint
-        Schema::table('incentive_applications', function (Blueprint $table) {
-            $table->foreign('applicantID')->references('id')->on('applicants');
-            $table->foreign('marriageID')->references('id')->on('marriages');
-        });
+        
+        
     }
 
     /**

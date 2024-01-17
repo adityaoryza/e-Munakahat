@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/incentive-application', [IncentiveApplicationController::class, 'index'])->name('incentiveApplication.index');
     Route::get('/create', [IncentiveApplicationController::class, 'create'])->name('incentiveApplication.create');
     Route::post('/incentive-application', [IncentiveApplicationController::class, 'store'])->name('incentiveApplication.store');
+    Route::post('/incentiveApplication', [IncentiveApplicationController::class, 'store'])->name('incentiveApplication.store');
     Route::get('/incentive-application/views', [IncentiveApplicationController::class, 'views'])->name('incentiveApplication.views');
     //Route::get('/applications', 'YourController@showApplications');
 

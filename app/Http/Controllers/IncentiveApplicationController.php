@@ -7,25 +7,52 @@ use Illuminate\Http\Request;
 
 class IncentiveApplicationController extends Controller
 {
-    /**
-     * Apply the incentive.
-     
-    *public function applyIncentive()
-    *{
-    *    return view('incentiveApplication.index');
-    *}
-    *
-     * Display the .
-     */
+
     public function index()
     {
-        //
-        return view('incentiveApplication.index');
+        $incentiveApplication = incentiveApplication::all();
+        return view('incentiveApplication.index', compact('incentiveApplication'));
+        //return view('incentiveApplication.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function create()
+    {
+        //
+        return view('incentiveApplication.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            // Add validation rules for other fields
+            'husbandName' => 'required|string|max:255',
+            'husbandIC' => 'required|string|max:255',
+            'workplace' => 'required|string|max:255',
+            'jobPosition' => 'required|string|max:255',
+            'bankCategory' => 'required|string|max:255',
+            'accountNumber' => 'required|string|max:255',
+            'bankStatement' => 'required|mimes:pdf|max:2048', // Example: PDF file, max 2MB
+            'payslip' => 'required|mimes:pdf|max:2048', // Example: PDF file, max 2MB
+        ]);
+    
+        // Store registration data
+        $registration = new IncentiveApplication();
+        $registration->husbandName = $request->input('husbandName');
+        $registration->husbandIC = $request->input('husbandIC');
+        $registration->workplace = $request->input('workplace');
+        $registration->jobPosition = $request->input('jobPosition');
+        $registration->bankCategory = $request->input('bankCategory');
+        $registration->accountNumber = $request->input('accountNumber');
+        $registration->bankStatement = $request->input('bankStatement');
+        $registration->payslip = $request->input('payslip');
+        $registration->save();
+
+
+        return redirect()->route('incentiveApplication')->with('success', 'Special Incentive Application submitted successfully!');
+
+    }
+
+
     public function views()
     {
         //
@@ -51,49 +78,13 @@ class IncentiveApplicationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-        return view('incentiveApplication.create');
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
         
     
-     public function store(Request $request)
-    {
         
-        if (!auth()->check()) {
-            return redirect()->route('login');
-        }
-        // Validate and store the incentive application data
-        $validatedData = $request->validate([
-            // Define your validation rules here based on your requirements
-            'applicantID' => 'required|string|max:50',
-            'marriageID' => 'nullable|string|max:255',
-            'incentive_status' => 'required|string|max:10',
-            'incentive_apply_date' => 'required|date',
-            'groom_job_position' => 'required|string|max:80',
-            'groom_payslip' => 'required|file', // Assuming it's a file upload
-            'groom_bank_statement' => 'required|file', // Assuming it's a file upload
-            'groom_acc_number' => 'required|integer',
-        ]);
-
-        // Assuming 'IncentiveID' needs to be generated dynamically, you can customize this part
-        $validatedData['IncentiveID'] = uniqid();
-
-        // Assuming 'incentive_applications' is your model
-        IncentiveApplication::create($validatedData);
-
-        return redirect()->route('incentive-application.index')->with('success', 'Incentive application submitted successfully.');
-    }
-
     /**
      * Display the specified resource.
      */
@@ -119,20 +110,20 @@ class IncentiveApplicationController extends Controller
         // Validate and update the incentive application data
         $validatedData = $request->validate([
             // Define your validation rules here based on your requirements
-            'applicantID' => 'required|string|max:50',
-            'marriageID' => 'nullable|string|max:255',
-            'incentive_status' => 'required|string|max:10',
-            'incentive_apply_date' => 'required|date',
-            'groom_job_position' => 'required|string|max:80',
-            'groom_payslip' => 'required|file', // Assuming it's a file upload
-            'groom_bank_statement' => 'required|file', // Assuming it's a file upload
-            'groom_acc_number' => 'required|integer',
+            'husbandName' => 'required|string|max:255',
+            'husbandIC' => 'required|string|max:255',
+            'workplace' => 'required|string|max:255',
+            'jobPosition' => 'required|string|max:255',
+            'bankCategory' => 'required|string|max:255',
+            'accountNumber' => 'required|string|max:255',
+            'bankStatement' => 'required|mimes:pdf|max:2048', // Example: PDF file, max 2MB
+            'payslip' => 'required|mimes:pdf|max:2048', // Example: PDF file, max 2MB
         ]);
 
         // Update the incentive application data
         $incentiveApplication->update($validatedData);
-
-        return redirect()->route('incentive-application.show', ['incentiveApplication' => $incentiveApplication])->with('success', 'Incentive application updated successfully.');
+        //return redirect()->route('incentiveApplication.index')->with('success', 'Incentive application deleted successfully.');
+        return redirect()->route('incentiveApplication')->with('success', 'Special Incentive Application submitted successfully!');
     }
 
     /**
@@ -142,7 +133,7 @@ class IncentiveApplicationController extends Controller
     {
         // Delete the incentive application
         $incentiveApplication->delete();
-
+        //return redirect()->route('incentiveApplication.index')->with('success', 'Incentive application deleted successfully.');
         return redirect()->route('incentive-application.index')->with('success', 'Incentive application deleted successfully.');
     }
 }

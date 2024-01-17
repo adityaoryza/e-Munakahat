@@ -12,15 +12,14 @@ class IncentiveApplication extends Model
     use HasFactory;
 
     protected $fillable = [
-        'IncentiveID',
-        'applicantID',
-        'marriageID',
-        'incentive_status',
-        'incentive_apply_date',
-        'groom_job_position',
-        'groom_payslip',
-        'groom_bank_statement',
-        'groom_acc_number',
+        'husbandName',
+        'husbandIC',
+        'workplace',
+        'jobPosition',
+        'bankCategory',
+        'accountNumber',
+        'bankStatement',
+        'payslip',
     ];
 
     // Add relationships or additional methods as needed

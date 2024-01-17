@@ -36,13 +36,13 @@
                                     <div class="flex items-center justify-center pb=5 pt-5">
                                         <form action="{{ route('incentiveApplication.create') }}" method="get">
                                             @csrf
-                                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">APPLY INCENTIVE</button>
+                                            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" name="createDirect">APPLY INCENTIVE</button>
                                         </form>
 
                                         <!-- Add the new button for 'View Applied' -->
                                         <form action="{{ route('incentiveApplication.views') }}" method="get">
                                             @csrf
-                                            <button type="submit" class="bg-sky-700 text-white px-4 py-2 rounded-md hover:bg-sky-500 ml-4">VIEW APPLIED</button>
+                                            <button type="submit" class="bg-sky-700 text-white px-4 py-2 rounded-md hover:bg-sky-500 ml-4" name="viewsDirect">VIEW APPLIED</button>
                                         </form>
                                     </div>
 
