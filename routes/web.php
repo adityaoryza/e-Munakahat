@@ -30,18 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // New route for marriage registrations
-    // Route::get('/marriageRegistrations', [MarriageRegistrationController::class, 'index'])->name('marriageRegistrations.index');
+    // marriage registrations routes
     Route::get('/marriageRegistrations', [MarriageRegistrationController::class, 'index'])->name('marriageRegistrations');
     Route::get('/marriageRegistrations/create', [MarriageRegistrationController::class, 'create']);
     Route::post('/marriageRegistrations', [MarriageRegistrationController::class, 'store']);
     Route::get('/marriageRegistrations/{marriageRegistration}/edit', [MarriageRegistrationController::class, 'edit']);
     Route::patch('/marriageRegistrations/{marriageRegistration}', [MarriageRegistrationController::class, 'update']);
-    // Route::patch('/marriageRegistrations/{marriageRegistration}', [MarriageRegistrationController::class, 'update']);
     Route::get('/marriageRegistrations/{marriageRegistration}', [MarriageRegistrationController::class, 'destroy']);
 
     
-// delete the routes 
 
     // // New route for incentive application ===> example
     Route::get('/incentive-application', [IncentiveApplicationController::class, 'index'])->name('incentiveApplication.index');
